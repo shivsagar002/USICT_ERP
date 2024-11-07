@@ -1,0 +1,148 @@
+<!--Website: wwww.codingdung.com-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile | USICT ERP</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link type="text/css" href="../public/assets/css/userProfile.css" />
+    <style>
+      p{
+        display: inline-block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container light-style flex-grow-1 container-p-y" style="align-items: center;">
+      <h4 class="font-weight-bold py-3 mb-4" style="text-transform: capitalize;"><%= user.name %> | <%= user.userType %></h4>
+      <div class="card overflow-hidden">
+        <div class="row no-gutters row-bordered row-border-light ">
+          
+          <div class="col-md-9 mx-auto">
+              <div class="tab-content">
+                <div class="tab-pane fade active show" id="account-general">
+                  <div class="card-body media align-items-center">
+                    <img
+                      src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                      alt
+                      class="d-block ui-w-80 mx-auto"
+                      id="profile-img"
+                      style="
+                        border-radius: 50% !important;
+                        width: 10vw !important;
+                      "
+                    />
+                  </div>
+                  <hr class="border-light m-0" />
+                  <div class="card-body">
+                    <h4>Personal Information:</h4><hr>
+                    <div class="form-group">
+                      <p class="form-label"><b>Username:</b></p>
+                      <p><%= user.username %></p>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>Name:</b></p>
+                      <p><%= user.name %></p>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>Gender:</b></p>
+                      <p><%= user.gender %></p>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>E-mail:</b></p>
+                      <p><%= user.email %></p>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>Mobile:</b></p>
+                      <p><%= user.mobile %></p>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h4>Professional Information:</h4><hr>
+                    <div class="form-group">
+                      <p class="form-label"><b>Education:</b></p>
+                      <p><%= user.education %></p>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>Department:</b></p>
+                      <p><%= user.department %></p>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>Skills:</b></p>
+                      <p><%= user.skills %></p>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>Languages:</b></p>
+                      <p><%= user.languages %></p>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h4>Other Information:</h4><hr>
+                    <div class="form-group">
+                      <p class="form-label"><b>Bio:</b></p>
+                      <p><%= user.bio %></p>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>Birthday:</b></p>
+                      <p><%= user.birthday %></p>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>Current Address:</b></p>
+                      <p><%= user.cAddress %></p>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>Permanent Address:</b></p>
+                      <p><%= user.pAddress %></p>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                    <h4>Social Links:</h4><hr>
+                    <div class="form-group">
+                      <p class="form-label"><b>Twitter:</b></p>
+                      <a href="<%= user.twitter %>" target="_blank"><%= user.twitter %></a>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>Facebook:</b></p>
+                      <a href="<%= user.facebook %>" target="_blank"><%= user.facebook %></a>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>Linkedin:</b></p>
+                      <a href="<%= user.linkedin %>" target="_blank"><%= user.linkedin %></a>
+                    </div>
+                    <div class="form-group">
+                      <p class="form-label"><b>Instagram:</b></p>
+                      <a href="<%= user.instagram %>" target="_blank"><%= user.instagram %></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+      const profilePicture = document.getElementById("profile-img");
+      const photoUpload = document.getElementById("photo-upload");
+
+      photoUpload.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file.type.match(/image.*/)) {
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = (e) => {
+            profilePicture.src = e.target.result;
+          };
+        } else {
+          alert("Please select a valid image file.");
+        }
+      });
+    </script>
+  </body>
+</html>

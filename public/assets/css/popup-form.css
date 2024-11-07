@@ -1,0 +1,97 @@
+:root {
+    --light: #f6f6f9;
+    --primary: #1976D2;
+    --light-primary: #CFE8FF;
+    --grey: #eee;
+    --dark-grey: #AAAAAA;
+    --dark: #363949;
+    --danger: #D32F2F;
+	--light-danger: #FECDD3;
+    --warning: #FBC02D;
+    --light-warning: #FFF2C6;
+    --success: #2f0f9a;
+    --light-success: #BBF7D0;
+}
+.popup-form{
+    background-color: #36394953;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000 !important;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    transition: all 1s ease;
+    opacity: 0;
+}
+.popup-form.active{
+    display: block;
+    opacity: 1;
+    transition: all 1s ease;
+}
+.popup-form .fa-square-xmark{
+    float: right;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    color: var(--light-success);
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.registration-form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px 50px;
+    background-color: var(--light);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.registration-form h2{
+    border-bottom: 3px solid red;
+    max-width: fit-content;
+    margin: 0 auto 20px;
+    padding: 0 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-group input[type="submit"] {
+    background-color: #6a1b9a;
+    color: var(--light);
+    border: none;
+    cursor: pointer;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #4a148c;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+

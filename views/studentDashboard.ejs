@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" type="text/css" href="../public/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../public/assets/css/table.css" />
+    <link rel="stylesheet" type="text/css" href="../public/assets/css/popup-form.css" />
+    <script src="../public/dependencies/js/index.global.min.js"></script>
+    <script src="../public/dependencies/js/index2.global.min.js"></script>
+    <script src="../public/js/eventClaender.js"></script>
+    <script src="../public/dependencies/js/apexcharts.js"></script>
+    <title>USICT ERP - Student</title>
+  </head>
+
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <a href="/" class="logo">
+        <img src="../public/assets/images/USICTLogo.png" alt="CPJ" />
+      </a>
+      <ul class="side-menu">
+        <li class="active inpage">
+          <a href="#dashboard"><i class="bx bxs-dashboard"></i>Dashboard</a>
+        </li>
+        <li class="inpage">
+          <a href="#time-table"
+            ><i class="fa-solid fa-calendar-days"></i>Time Table</a
+          >
+        </li>
+        <li class="inpage">
+          <a href="#notice"><i class="fa-solid fa-file-lines"></i>Notices</a>
+        </li>
+        <li class="inpage">
+          <a href="#events"><i class="fa-solid fa-list"></i>Events</a>
+        </li>
+        <li>
+          <a href="https://shivsagar.tech"><i class="fa-solid fa-lines-leaning" target="_blank"></i>Learn</a>
+        </li>
+        <li class="inpage">
+          <a href="#change-password"
+            ><i class="fa-solid fa-lock"></i>Change Password</a
+          >
+        </li>
+      </ul>
+      <ul class="side-menu">
+        <li>
+          <a href="/logout" class="logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- End of Sidebar -->
+
+    <!-- Main Content -->
+    <div class="content">
+      <!-- Navbar -->
+      <div
+        class="dashboard top-nav"
+        style="position: sticky; z-index: 10; top: 0"
+      >
+        <nav>
+          <i class="fa-solid fa-bars"></i>
+          <form action="#">
+            <div class="form-input">
+              <input type="search" placeholder="Search..." />
+              <button class="search-btn" type="submit">
+                <i class="bx bx-search"></i>
+              </button>
+            </div>
+          </form>
+          <input type="checkbox" id="theme-toggle" hidden disabled/>
+          <label for="theme-toggle" class="theme-toggle"></label>
+          <!-- <a href="#" class="notif">
+            <i class="fa-solid fa-bell"></i>
+            <span class="count">12</span>
+          </a> -->
+          <a href="/student/myProfile" class="profile">
+            <img src="../uploads/profileImages/students/<%= user.profilePic %>" />
+          </a>
+        </nav>
+      </div>
+
+      <!-- End of Navbar -->
+
+      <!-- main sections start here -->
+      <main>
+        <section class="section dashboard active" id="dashboard">
+          <h3 class="section-header">Dashboard</h3>
+          <ul class="insights section-in">
+            <li>
+              <img src="../public/assets/images/lessons.svg" alt="" />
+              <span class="info">
+                <h3>6</h3>
+                <p>Total Subjects</p>
+              </span>
+            </li>
+            <li>
+              <img src="../public/assets/images/testsheet.svg" alt="" />
+              <span class="info">
+                <h3>02/14</h3>
+                <p>Assignment</p>
+              </span>
+            </li>
+            <li>
+              <img src="../public/assets/images/classes.svg" alt="" />
+              <span class="info">
+                <h3>17/23</h3>
+                <p>Test Attempted</p>
+              </span>
+            </li>
+            <li>
+              <img src="../public/assets/images/trophy.svg" alt="" />
+              <span class="info">
+                <h3>3</h3>
+                <p>College Rank</p>
+              </span>
+            </li>
+          </ul>
+          <div class="charts-area section-in">
+            <div class="charts" id="radarChart" style="width: 500px;"></div>
+            <div class="charts" id="simpleBar" style="width: 600px;"></div>
+          </div>
+        </section>
+
+        <section class="section time-table" id="time-table">
+          <h3 class="section-header">Time Table</h3>
+          <div class="section-in">
+            <section class="table__body">
+              <table style="border: none;">
+                <thead>
+                  <tr>
+                    <th>Class</th>
+                    <th>Updated</th>
+                    <th>View</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% timeTables.forEach(timeTable=>{ %>
+                  <tr>
+                    <td><%= timeTable.course %> <%= timeTable.semsester %></td>
+                    <td><%= timeTable.updateDate %></td>
+                    <td><form action="/admin/viewTimeTable/<%= timeTable._id %>" method="post"><button type="submit" class="icon-button"><i class="fa-solid fa-eye"></i></button></form></td>
+                    <td><form action="/admin/deleteTimeTable/<%= timeTable._id %>" method="post"><button type="submit" class="icon-button"><i class="fa-solid fa-trash"></i></button></form></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+              <div class="">
+                <button
+                  type="button"
+                  style="float: right"
+                  class="btn btn-primary popup-btn add-time-table"
+                >
+                  <i class="fa-solid fa-plus"></i> Add More
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="section notice" id="notice">
+          <h3 class="section-header">Notice</h3>
+          <div class="section-in">
+            <section class="table__body">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Notice Name</th>
+                    <th>View</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% notices.forEach(notice=>{ %>
+                  <tr>
+                    <td><%= notice.noticeDate %></td>
+                    <td><%= notice.noticeName %></td>
+                    <td><form action="/admin/viewNotice/<%= notice._id %>" method="post"><button type="submit" class="icon-button"><i class="fa-solid fa-eye"></i></button></form></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+              <div class="">
+                <button
+                  type="button"
+                  style="float: right"
+                  class="btn btn-primary popup-btn add-notice"
+                >
+                  <i class="fa-solid fa-plus"></i> Add More
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="section events" id="events">
+          <h3 class="section-header">Events</h3>
+          <div class="section-in">
+            <div id="calendar"></div>
+          </div>
+        </section>
+
+        <section class="section change-password" id="change-password">
+          <h3 class="section-header">Change Password</h3>
+          <div class="section-in">
+            <form action="/student/changePassword" method="post">
+              <div class="form-group">
+                <label for="oldPassword">Old Password</label>
+                <input
+                  type="password"
+                  id="oldPassword"
+                  name="oldPassword"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">New Password</label>
+                <input
+                  type="password"
+                  id="newpassword"
+                  name="newpassword"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword">Re-Enter Password</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  required
+                />
+              </div>
+              <span id="validateMessage"></span>
+              <div class="form-group">
+                <input type="submit" value="Change Password" id="chnagePass" disabled/>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <script src="../public/js/charts/simpleBar.js"></script>
+    <script src="../public/js/charts/radarChart.js"></script>
+    <script src="../public/js/script.js"></script>
+    <script src="../public/js/popup-form.js"></script>
+  </body>
+</html>
